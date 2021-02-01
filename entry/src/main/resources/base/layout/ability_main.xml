@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:orientation="vertical"
+    ohos:width="match_parent">
+
+    <com.sun.os.widget.HomePageComponent
+        ohos:height="match_parent"
+        ohos:above="$id:navLayout"
+        ohos:width="match_parent"/>
+
+    <Component
+        ohos:above="$id:navLayout"
+        ohos:background_element="#404040"
+        ohos:height="1px"
+        ohos:width="match_parent"/>
+
+    <DirectionalLayout
+        ohos:align_parent_bottom="true"
+        ohos:background_element="#ffffff"
+        ohos:height="50vp"
+        ohos:id="$+id:navLayout"
+        ohos:orientation="horizontal"
+        ohos:width="match_parent">
+
+        <DirectionalLayout
+            ohos:id="$+id:homeTab"
+            ohos:height="match_parent"
+            ohos:weight="1"
+
+            ohos:alignment="center"
+            ohos:orientation="vertical"
+            ohos:width="0vp">
+
+            <Image
+                ohos:layout_alignment="center"
+                ohos:image_src="$media:tab_home_n"
+                ohos:height="24vp"
+                ohos:width="24vp"/>
+
+            <Text
+                ohos:height="match_content"
+                ohos:text="首页"
+                ohos:layout_alignment="center"
+                ohos:text_color="#404040"
+                ohos:text_size="12fp"
+                ohos:width="match_content"/>
+        </DirectionalLayout>
+
+        <DirectionalLayout
+            ohos:id="$+id:courseTab"
+            ohos:height="match_parent"
+            ohos:weight="1"
+            ohos:alignment="center"
+            ohos:orientation="vertical"
+            ohos:width="0vp">
+
+            <Image
+                ohos:layout_alignment="center"
+                ohos:image_src="$media:tab_course_n"
+                ohos:height="24vp"
+                ohos:width="24vp"/>
+
+            <Text
+                ohos:height="match_content"
+                ohos:text="课程"
+                ohos:layout_alignment="center"
+                ohos:text_color="#404040"
+                ohos:text_size="12fp"
+                ohos:width="match_content"/>
+        </DirectionalLayout>
+
+        <DirectionalLayout
+            ohos:id="$+id:circleTab"
+            ohos:height="match_parent"
+            ohos:weight="1"
+            ohos:alignment="center"
+            ohos:orientation="vertical"
+            ohos:width="0vp">
+
+            <Image
+                ohos:layout_alignment="center"
+                ohos:image_src="$media:tab_circle_n"
+                ohos:height="24vp"
+                ohos:width="24vp"/>
+
+            <Text
+                ohos:height="match_content"
+                ohos:text="同学圈"
+                ohos:layout_alignment="center"
+                ohos:text_color="#404040"
+                ohos:text_size="12fp"
+                ohos:width="match_content"/>
+        </DirectionalLayout>
+
+        <DirectionalLayout
+            ohos:id="$+id:mineTab"
+            ohos:height="match_parent"
+            ohos:weight="1"
+            ohos:alignment="center"
+            ohos:orientation="vertical"
+            ohos:width="0vp">
+
+            <Image
+                ohos:layout_alignment="center"
+                ohos:image_src="$media:tab_mine_n"
+                ohos:height="24vp"
+                ohos:width="24vp"/>
+
+            <Text
+                ohos:height="match_content"
+                ohos:text="我的"
+                ohos:layout_alignment="center"
+                ohos:text_color="#404040"
+                ohos:text_size="12fp"
+                ohos:width="match_content"/>
+        </DirectionalLayout>
+    </DirectionalLayout>
+</DependentLayout>

@@ -1,0 +1,92 @@
+{
+  "app": {
+    "bundleName": "com.sun.os",
+    "vendor": "sun",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 4,
+      "target": 4,
+      "releaseType": "Beta1"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.sun.os",
+    "name": ".MyApplication",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "name": "com.sun.os.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "HarmonyDemo",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.INTERNET",
+        "reason": "需要访问网络的权限",
+        "usedScene": {
+          "ability": ["com.sun.os.MainAbility"],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.CAMERA",
+        "reason": "需要访问相机的权限",
+        "usedScene": {
+          "ability": ["com.sun.os.MainAbility"],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_USER_STORAGE",
+        "reason": "需要读写文件的权限",
+        "usedScene": {
+          "ability": ["com.sun.os.MainAbility"],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_USER_STORAGE",
+        "reason": "需要读写文件的权限",
+        "usedScene": {
+          "ability": ["com.sun.os.MainAbility"],
+          "when": "always"
+        }
+      }
+    ],
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "hwc-theme",
+          "value": "androidhwext:style/Theme.Emui.NoTitleBar",
+          "extra": ""
+        }
+      ]
+    }
+  }
+}
