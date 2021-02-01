@@ -284,10 +284,16 @@
                     ohos:id="$+id:titleEduc"
                     ohos:width="match_parent"/>
 
-                <Image
-                    ohos:height="50vp"
-                    ohos:image_src="$color:black"
-                    ohos:width="match_parent"/>
+                <NestedScrollView
+                    ohos:height="match_content"
+                    ohos:width="match_parent">
+
+                    <DirectionalLayout
+                        ohos:height="match_content"
+                        ohos:id="$+id:educContainer"
+                        ohos:orientation="horizontal"
+                        ohos:width="match_content"/>
+                </NestedScrollView>
 
                 <com.sun.os.widget.HomePageTitleComponent
                     ohos:height="match_content"

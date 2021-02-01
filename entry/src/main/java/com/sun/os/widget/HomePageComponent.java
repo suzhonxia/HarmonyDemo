@@ -2,6 +2,7 @@ package com.sun.os.widget;
 
 import com.sun.os.ResourceTable;
 import com.sun.os.bean.ContestBean;
+import com.sun.os.bean.EducBean;
 import com.sun.os.bean.NewsBean;
 import com.sun.os.tool.*;
 import ohos.agp.components.*;
@@ -153,6 +154,37 @@ public class HomePageComponent extends ComponentContainer {
     private void initEducLayout(Component contentLayout) {
         HomePageTitleComponent titleComponent = (HomePageTitleComponent) contentLayout.findComponentById(ResourceTable.Id_titleEduc);
         titleComponent.setData("亲职教育", "", null);
+
+        ArrayList<EducBean> educList = new ArrayList<>();
+        educList.add(new EducBean("【2—3岁】磁力片亲职教育课程", "3.4万", ResourceTable.Media_img_home_educ_1));
+        educList.add(new EducBean("【3—4岁】磁力片亲职教育课程", "1.2万", ResourceTable.Media_img_home_educ_2));
+        educList.add(new EducBean("【4—5岁】磁力片亲职教育课程", "7.5千", ResourceTable.Media_img_home_educ_3));
+
+        DirectionalLayout educContainer = (DirectionalLayout) contentLayout.findComponentById(ResourceTable.Id_educContainer);
+        for (int i = 0; i < educList.size(); i++) {
+            EducBean educBean = educList.get(i);
+            Component educComponent = LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_layout_home_page_educ, educContainer, false);
+            educComponent.setWidth((int) (DisplayUtils.getDisplayWidthInPx(getContext()) * 0.6));
+            educComponent.setBackground(new ShapeElementCreator.Builder().setShape(ShapeElement.RECTANGLE).setColor(0xffffffff).setCornerRadius(vp2px(5)).build());
+
+            ((Text) educComponent.findComponentById(ResourceTable.Id_tvEducTitle)).setText(educBean.title);
+            ((Text) educComponent.findComponentById(ResourceTable.Id_tvEducNum)).setText(educBean.readNum + "人学习过");
+            Image ivEducCover = ((Image) educComponent.findComponentById(ResourceTable.Id_ivEducCover));
+            ivEducCover.setCornerRadius(vp2px(5));
+            ivEducCover.setPixelMap(educBean.cover);
+
+            LayoutConfig layoutConfig = new LayoutConfig();
+            if (i == 0) {
+                layoutConfig.setMarginLeft(vp2px(15));
+            } else if (i == educList.size() - 1) {
+                layoutConfig.setMarginRight(vp2px(15));
+            }
+            if (i != 0) {
+                layoutConfig.setMarginLeft(vp2px(8));
+            }
+
+            educContainer.addComponent(educComponent, layoutConfig);
+        }
     }
 
     private void initContestLayout(Component contentLayout) {

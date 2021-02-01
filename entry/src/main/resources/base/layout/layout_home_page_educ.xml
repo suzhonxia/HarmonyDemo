@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_content"
+    ohos:orientation="horizontal"
+    ohos:padding="15vp"
+    ohos:width="212vp">
+
+    <DirectionalLayout
+        ohos:height="68vp"
+        ohos:orientation="vertical"
+        ohos:weight="1"
+        ohos:width="0vp">
+
+        <Text
+            ohos:height="0vp"
+            ohos:id="$+id:tvEducTitle"
+            ohos:line_height_num="1.2"
+            ohos:max_text_lines="2"
+            ohos:multiple_lines="true"
+            ohos:text="亲职教育标题亲职教育标题亲职教育标题亲职教育标题亲职教育标题"
+            ohos:text_alignment="left"
+            ohos:text_color="$color:dark"
+            ohos:text_size="15fp"
+            ohos:text_weight="700"
+            ohos:truncation_mode="ellipsis_at_end"
+            ohos:weight="1"
+            ohos:width="match_parent"/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:id="$+id:tvEducNum"
+            ohos:text="XXX人学习过"
+            ohos:text_color="$color:thinGray"
+            ohos:text_size="13fp"
+            ohos:width="match_parent"/>
+    </DirectionalLayout>
+
+    <Image
+        ohos:height="68vp"
+        ohos:id="$+id:ivEducCover"
+        ohos:image_src="$media:img_home_educ_1"
+        ohos:left_margin="15vp"
+        ohos:scale_mode="clip_center"
+        ohos:width="68vp"/>
+</DirectionalLayout>

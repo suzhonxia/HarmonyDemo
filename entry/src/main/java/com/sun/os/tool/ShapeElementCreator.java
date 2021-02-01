@@ -1,5 +1,6 @@
 package com.sun.os.tool;
 
+import ohos.agp.colors.RgbColor;
 import ohos.agp.components.element.ShapeElement;
 import ohos.app.Context;
 
@@ -18,6 +19,16 @@ public class ShapeElementCreator {
 
         public Builder setShape(int shape) {
             shapeElement.setShape(shape);
+            return this;
+        }
+
+        public Builder setColor(int rgba) {
+            shapeElement.setRgbColor(new RgbColor(rgba));
+            return this;
+        }
+
+        public Builder setRgbColor(RgbColor color) {
+            shapeElement.setRgbColor(color);
             return this;
         }
 
