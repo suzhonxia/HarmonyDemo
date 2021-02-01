@@ -64,6 +64,7 @@
 
         <ScrollView
             ohos:height="match_parent"
+            ohos:id="$+id:contentScroll"
             ohos:width="match_parent">
 
             <DirectionalLayout
@@ -293,9 +294,12 @@
                     ohos:id="$+id:titleContest"
                     ohos:width="match_parent"/>
 
-                <Image
-                    ohos:height="50vp"
-                    ohos:image_src="$color:black"
+                <DirectionalLayout
+                    ohos:height="match_content"
+                    ohos:id="$+id:contestContainer"
+                    ohos:left_margin="15vp"
+                    ohos:orientation="vertical"
+                    ohos:right_margin="15vp"
                     ohos:width="match_parent"/>
 
                 <com.sun.os.widget.HomePageTitleComponent

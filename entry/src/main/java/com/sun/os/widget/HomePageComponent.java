@@ -1,12 +1,9 @@
 package com.sun.os.widget;
 
 import com.sun.os.ResourceTable;
+import com.sun.os.bean.ContestBean;
 import com.sun.os.bean.NewsBean;
-import com.sun.os.slice.MainAbilitySlice;
-import com.sun.os.tool.Constant;
-import com.sun.os.tool.DisplayUtils;
-import com.sun.os.tool.HmOSImageLoader;
-import com.sun.os.tool.Logger;
+import com.sun.os.tool.*;
 import ohos.agp.components.*;
 import ohos.agp.components.element.ShapeElement;
 import ohos.app.Context;
@@ -15,6 +12,9 @@ import ohos.multimodalinput.event.TouchEvent;
 import java.util.ArrayList;
 
 public class HomePageComponent extends ComponentContainer {
+
+    private int scrolledX = 0;
+
     public HomePageComponent(Context context) {
         super(context);
         init();
@@ -34,6 +34,7 @@ public class HomePageComponent extends ComponentContainer {
         Component contentLayout = LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_layout_home_page, this, false);
         addComponent(contentLayout);
 
+        initContentScroll(contentLayout);
         initBannerLayout(contentLayout);
         initNoticeLayout(contentLayout);
         initPosterView(contentLayout);
@@ -45,10 +46,14 @@ public class HomePageComponent extends ComponentContainer {
         initNewsLayout(contentLayout);
     }
 
-    private int scrolledX = 0;
+    private void initContentScroll(Component contentLayout) {
+        ScrollView contentScroll = (ScrollView) contentLayout.findComponentById(ResourceTable.Id_contentScroll);
+        contentScroll.setReboundEffect(true);
+        contentScroll.setReboundEffectParams(5, 0.1F, 80);
+    }
 
     private void initBannerLayout(Component contentLayout) {
-        int space = DisplayUtils.vp2px(getContext(), 16);
+        int space = vp2px(16);
         int width = DisplayUtils.getDisplayWidthInPx(getContext()) - space * 2;
         int height = (int) (width * 0.44);
         Logger.logI("initBannerLayout width = " + width + ", height = " + height);
@@ -61,7 +66,7 @@ public class HomePageComponent extends ComponentContainer {
             Image ivBanner = new Image(getContext());
             ivBanner.setPixelMap(bannerList[i]);
             ivBanner.setScaleMode(Image.ScaleMode.CLIP_CENTER);
-            ivBanner.setCornerRadius(DisplayUtils.vp2px(getContext(), 5));
+            ivBanner.setCornerRadius(vp2px(5));
 
             LayoutConfig layoutConfig = new LayoutConfig(width, height);
             if (i == 0) {
@@ -105,11 +110,11 @@ public class HomePageComponent extends ComponentContainer {
         for (int i = 0; i < size; i++) {
             int res = i == index ? ResourceTable.Graphic_banner_point_select_tablet : ResourceTable.Graphic_banner_point_normal_tablet;
             Component point = new Component(getContext());
-            point.setBackground(new ShapeElement(getContext(), res));
+            point.setBackground(new ShapeElementCreator.Builder(getContext(), res).build());
 
-            LayoutConfig layoutConfig = new LayoutConfig(DisplayUtils.vp2px(getContext(), i == index ? 16 : 6), DisplayUtils.vp2px(getContext(), 6));
+            LayoutConfig layoutConfig = new LayoutConfig(vp2px(i == index ? 16 : 6), vp2px(6));
             if (i != 0) {
-                layoutConfig.setMarginLeft(DisplayUtils.vp2px(getContext(), 4));
+                layoutConfig.setMarginLeft(vp2px(4));
             }
 
             pointLayout.addComponent(point, layoutConfig);
@@ -124,7 +129,7 @@ public class HomePageComponent extends ComponentContainer {
     }
 
     private void initPosterView(Component contentLayout) {
-        int width = DisplayUtils.getDisplayWidthInPx(getContext()) - DisplayUtils.vp2px(getContext(), 15) * 2;
+        int width = DisplayUtils.getDisplayWidthInPx(getContext()) - vp2px(15) * 2;
         Image ivPoster = (Image) contentLayout.findComponentById(ResourceTable.Id_ivPoster);
         ivPoster.setHeight((int) (width * 0.173333));
         HmOSImageLoader.with(getContext()).load(Constant.posterPath).def(ResourceTable.Media_img_poster).into(ivPoster);
@@ -153,6 +158,29 @@ public class HomePageComponent extends ComponentContainer {
     private void initContestLayout(Component contentLayout) {
         HomePageTitleComponent titleComponent = (HomePageTitleComponent) contentLayout.findComponentById(ResourceTable.Id_titleContest);
         titleComponent.setData("竞赛", "查看全部＞", null);
+
+        ArrayList<ContestBean> contestList = new ArrayList<>();
+        contestList.add(new ContestBean("创意造型PK", "海选已结束", ResourceTable.Media_img_home_contest));
+
+        DirectionalLayout contestContainer = (DirectionalLayout) contentLayout.findComponentById(ResourceTable.Id_contestContainer);
+        for (ContestBean contestBean : contestList) {
+            Component contestComponent = LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_layout_home_page_contest, contestContainer, false);
+
+            Image ivContestCover = (Image) contestComponent.findComponentById(ResourceTable.Id_ivContestCover);
+            ivContestCover.setHeight((int) ((DisplayUtils.getDisplayWidthInPx(getContext()) - vp2px(60)) * 0.45));
+            ivContestCover.setCornerRadii(new float[]{vp2px(5), vp2px(5), vp2px(5), vp2px(5), 0, 0, 0, 0});
+            ivContestCover.setPixelMap(contestBean.cover);
+
+            Text tvContestLabel = ((Text) contestComponent.findComponentById(ResourceTable.Id_tvContestLabel));
+            tvContestLabel.setText(contestBean.label);
+            tvContestLabel.setBackground(new ShapeElementCreator.Builder(getContext(), ResourceTable.Graphic_shape_contest_label_bg)
+                    .setShape(ShapeElement.RECTANGLE).setCornerRadiiArray(vp2px(5), vp2px(9), vp2px(9), vp2px(0)).build());
+
+            Text tvContestTitle = (Text) contestComponent.findComponentById(ResourceTable.Id_tvContestTitle);
+            tvContestTitle.setText(contestBean.title);
+
+            contestContainer.addComponent(contestComponent);
+        }
     }
 
     private void initNewsLayout(Component contentLayout) {
@@ -173,5 +201,9 @@ public class HomePageComponent extends ComponentContainer {
 
             newsContainer.addComponent(newsComponent);
         }
+    }
+
+    private int vp2px(int vp) {
+        return DisplayUtils.vp2px(getContext(), vp);
     }
 }

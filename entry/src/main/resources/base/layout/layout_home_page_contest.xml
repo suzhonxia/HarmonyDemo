@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_content"
+    ohos:orientation="vertical"
+    ohos:width="match_parent">
+
+    <Image
+        ohos:height="135vp"
+        ohos:id="$+id:ivContestCover"
+        ohos:left_margin="15vp"
+        ohos:right_margin="15vp"
+        ohos:scale_mode="clip_center"
+        ohos:width="match_parent"/>
+
+    <Text
+        ohos:align_left="$id:ivContestCover"
+        ohos:background_element="$graphic:shape_contest_label_bg"
+        ohos:height="18vp"
+        ohos:id="$+id:tvContestLabel"
+        ohos:left_padding="8vp"
+        ohos:right_padding="8vp"
+        ohos:text="海选已结束"
+        ohos:text_alignment="center"
+        ohos:text_color="$color:dark"
+        ohos:text_size="12fp"
+        ohos:width="match_content"/>
+
+    <Text
+        ohos:background_element="$graphic:shape_contest_title_bg"
+        ohos:below="$id:ivContestCover"
+        ohos:height="match_content"
+        ohos:id="$+id:tvContestTitle"
+        ohos:padding="15vp"
+        ohos:text="竞赛标题"
+        ohos:text_color="$color:dark"
+        ohos:text_size="16fp"
+        ohos:text_weight="700"
+        ohos:width="match_parent"/>
+</DependentLayout>
