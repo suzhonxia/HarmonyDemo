@@ -4,6 +4,7 @@ import com.sun.os.ResourceTable;
 import com.sun.os.bean.ContestBean;
 import com.sun.os.bean.EducBean;
 import com.sun.os.bean.NewsBean;
+import com.sun.os.bean.PremiumBean;
 import com.sun.os.tool.*;
 import ohos.agp.components.*;
 import ohos.agp.components.element.ShapeElement;
@@ -139,6 +140,39 @@ public class HomePageComponent extends ComponentContainer {
     private void initPremiumLayout(Component contentLayout) {
         HomePageTitleComponent titleComponent = (HomePageTitleComponent) contentLayout.findComponentById(ResourceTable.Id_titlePremium);
         titleComponent.setData("精品付费课", "查看全部＞", null);
+
+        int topMargin = (int) ((DisplayUtils.getDisplayWidthInPx(getContext()) - vp2px(60)) * 0.45F);
+        ArrayList<PremiumBean> premiumList = new ArrayList<>();
+        premiumList.add(new PremiumBean("磁力星球 早教课", "早教益智", 199, 298, ResourceTable.Media_img_home_premium_1));
+        premiumList.add(new PremiumBean("大颗粒创意机械课 探索机械结构原理", "创意机械", 297, 699, ResourceTable.Media_img_home_premium_2));
+
+        DirectionalLayout premiumContainer = (DirectionalLayout) contentLayout.findComponentById(ResourceTable.Id_premiumContainer);
+        for (int i = 0; i < premiumList.size(); i++) {
+            PremiumBean premiumBean = premiumList.get(i);
+            Component premiumComponent = LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_layout_home_page_premium, premiumContainer, false);
+
+            premiumComponent.findComponentById(ResourceTable.Id_premiumContentLayout).getLayoutConfig().setMarginTop(topMargin);
+            ((Text) premiumComponent.findComponentById(ResourceTable.Id_tvPremiumTitle)).setText(premiumBean.title);
+            ((Text) premiumComponent.findComponentById(ResourceTable.Id_tvPremiumPrice)).setText("￥" + premiumBean.sellingPrice);
+            ((Text) premiumComponent.findComponentById(ResourceTable.Id_tvPremiumOriginalPrice)).setText("￥" + premiumBean.originalPrice);
+
+            Image ivPremiumCover = (Image) premiumComponent.findComponentById(ResourceTable.Id_ivPremiumCover);
+            ivPremiumCover.setHeight((int) ((DisplayUtils.getDisplayWidthInPx(getContext()) - vp2px(60)) * 0.5625));
+            ivPremiumCover.setCornerRadii(new float[]{vp2px(5), vp2px(5), vp2px(5), vp2px(5), 0, 0, 0, 0});
+            ivPremiumCover.setPixelMap(premiumBean.cover);
+
+            Text tvPremiumLabel = (Text) premiumComponent.findComponentById(ResourceTable.Id_tvPremiumLabel);
+            tvPremiumLabel.setText(premiumBean.label);
+            tvPremiumLabel.setBackground(new ShapeElementCreator.Builder(getContext(), ResourceTable.Graphic_shape_premium_label_bg)
+                    .setShape(ShapeElement.RECTANGLE).setCornerRadiiArray(vp2px(5), vp2px(9), vp2px(9), vp2px(0)).build());
+
+            LayoutConfig layoutConfig = new LayoutConfig();
+            if (i != 0) {
+                layoutConfig.setMarginTop(vp2px(15));
+            }
+
+            premiumContainer.addComponent(premiumComponent, layoutConfig);
+        }
     }
 
     private void initSeriesLayout(Component contentLayout) {
