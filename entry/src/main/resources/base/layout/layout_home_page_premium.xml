@@ -53,6 +53,7 @@
             ohos:below="$id:tvPremiumTitle"
             ohos:height="match_content"
             ohos:id="$+id:tvPremiumPrice"
+            ohos:text_weight="700"
             ohos:text="￥199"
             ohos:text_color="#ff0000"
             ohos:text_size="15fp"

@@ -1,12 +1,8 @@
 package com.sun.os;
 
 import com.sun.os.slice.MainAbilitySlice;
-import com.sun.os.tool.Logger;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
-import ohos.agp.utils.LayoutAlignment;
-import ohos.agp.window.dialog.ToastDialog;
-import ohos.bundle.IBundleManager;
 
 public class MainAbility extends Ability {
     @Override
