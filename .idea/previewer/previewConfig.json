@@ -1,7 +1,9 @@
 {
  "1.0.0": {
   "LastPreviewDevice": {
-   "E:\\EcoExample\\HarmonyDemo\\entry": []
+   "E:\\EcoExample\\HarmonyDemo\\entry": [
+    "phone"
+   ]
   }
  }
 }

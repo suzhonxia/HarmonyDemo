@@ -267,9 +267,12 @@
                     ohos:id="$+id:titleSeries"
                     ohos:width="match_parent"/>
 
-                <Image
-                    ohos:height="50vp"
-                    ohos:image_src="$color:black"
+                <DirectionalLayout
+                    ohos:height="match_content"
+                    ohos:id="$+id:seriesContainer"
+                    ohos:left_margin="15vp"
+                    ohos:orientation="vertical"
+                    ohos:right_margin="15vp"
                     ohos:width="match_parent"/>
 
                 <com.sun.os.widget.HomePageTitleComponent

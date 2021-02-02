@@ -1,13 +1,11 @@
 package com.sun.os.widget;
 
 import com.sun.os.ResourceTable;
-import com.sun.os.bean.ContestBean;
-import com.sun.os.bean.EducBean;
-import com.sun.os.bean.NewsBean;
-import com.sun.os.bean.PremiumBean;
+import com.sun.os.bean.*;
 import com.sun.os.tool.*;
 import ohos.agp.components.*;
 import ohos.agp.components.element.ShapeElement;
+import ohos.agp.utils.Color;
 import ohos.app.Context;
 import ohos.multimodalinput.event.TouchEvent;
 
@@ -178,6 +176,48 @@ public class HomePageComponent extends ComponentContainer {
     private void initSeriesLayout(Component contentLayout) {
         HomePageTitleComponent titleComponent = (HomePageTitleComponent) contentLayout.findComponentById(ResourceTable.Id_titleSeries);
         titleComponent.setData("创造力培养体系", "", null);
+
+        ArrayList<SeriesBean> seriesList = new ArrayList<>();
+        seriesList.add(new SeriesBean("融合积木 手工 亲子游戏的趣味立体式阅读课", new String[]{"亲子阅读", "益智建构", "绘本"}, ResourceTable.Media_img_home_series_1));
+        seriesList.add(new SeriesBean("科学探索全能专家课  实现静态到电动全覆盖", new String[]{"科学启蒙", "适用314件"}, ResourceTable.Media_img_home_series_2));
+        seriesList.add(new SeriesBean("大颗粒编程启蒙学习课程 开发思维潜能", new String[]{"153件", "实物编程"}, ResourceTable.Media_img_home_series_3));
+
+        DirectionalLayout seriesContainer = (DirectionalLayout) contentLayout.findComponentById(ResourceTable.Id_seriesContainer);
+        for (int i = 0; i < seriesList.size(); i++) {
+            SeriesBean seriesBean = seriesList.get(i);
+            Component seriesComponent = LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_layout_home_page_series, seriesContainer, false);
+
+            ((Text) seriesComponent.findComponentById(ResourceTable.Id_tvSeriesTitle)).setText(seriesBean.title);
+            Image ivSeriesCover = (Image) seriesComponent.findComponentById(ResourceTable.Id_ivSeriesCover);
+            ivSeriesCover.setCornerRadius(vp2px(5));
+            ivSeriesCover.setPixelMap(seriesBean.cover);
+
+            DirectionalLayout labelSeriesContainer = (DirectionalLayout) seriesComponent.findComponentById(ResourceTable.Id_labelSeriesContainer);
+            for (int j = 0; j < seriesBean.labels.length; j++) {
+                LayoutConfig layoutConfig = new LayoutConfig(LayoutConfig.MATCH_CONTENT, vp2px(20));
+                if (j != 0) {
+                    layoutConfig.setMarginLeft(vp2px(6));
+                }
+
+                Text label = new Text(getContext());
+                label.setText(seriesBean.labels[j]);
+                label.setLayoutConfig(layoutConfig);
+                label.setTextSize(10, Text.TextSizeType.FP);
+                label.setPadding(vp2px(8), 0, vp2px(8), 0);
+                label.setTextColor(new Color(Color.getIntColor("#FFA200")));
+                label.setBackground(new ShapeElementCreator.Builder().setShape(ShapeElement.RECTANGLE)
+                        .setColor(0xFFFFF4D0).setCornerRadiiArray(0, vp2px(10), vp2px(10), vp2px(10)).build());
+
+                labelSeriesContainer.addComponent(label);
+            }
+
+            LayoutConfig layoutConfig = new LayoutConfig();
+            if (i != 0) {
+                layoutConfig.setMarginTop(vp2px(15));
+            }
+
+            seriesContainer.addComponent(seriesComponent, layoutConfig);
+        }
     }
 
     private void initPartLayout(Component contentLayout) {

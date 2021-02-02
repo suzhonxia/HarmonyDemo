@@ -40,4 +40,12 @@ public class DisplayUtils {
         DisplayAttributes attributes = DisplayManager.getInstance().getDefaultDisplay(context).get().getAttributes();
         return (int) (attributes.densityPixels * vp);
     }
+
+    /**
+     * fp转像素
+     */
+    public static int fp2px(Context context, float fp) {
+        DisplayAttributes attributes = DisplayManager.getInstance().getDefaultDisplay(context).get().getAttributes();
+        return (int) (attributes.scalDensity * fp);
+    }
 }

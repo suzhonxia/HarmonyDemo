@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:background_element="$graphic:shape_series_content_bg"
+    ohos:height="match_content"
+    ohos:padding="15vp"
+    ohos:width="match_parent">
+
+    <Image
+        ohos:height="64vp"
+        ohos:id="$+id:ivSeriesCover"
+        ohos:image_src="$media:img_home_series_1"
+        ohos:scale_mode="clip_center"
+        ohos:width="115vp"/>
+
+    <Text
+        ohos:height="match_content"
+        ohos:id="$+id:tvSeriesTitle"
+        ohos:left_margin="12vp"
+        ohos:max_text_lines="2"
+        ohos:multiple_lines="true"
+        ohos:right_of="$id:ivSeriesCover"
+        ohos:text="断开了大家啊快乐的骄傲考虑到金坷垃"
+        ohos:text_color="$color:dark"
+        ohos:text_size="15fp"
+        ohos:text_weight="700"
+        ohos:truncation_mode="ellipsis_at_end"
+        ohos:width="match_content"/>
+
+    <DirectionalLayout
+
+        ohos:align_bottom="$id:ivSeriesCover"
+        ohos:background_element="#ff0000"
+        ohos:height="match_content"
+        ohos:id="$+id:labelSeriesContainer"
+        ohos:left_margin="12vp"
+        ohos:orientation="horizontal"
+        ohos:right_of="$id:ivSeriesCover"
+        ohos:width="match_parent"/>
+</DependentLayout>
