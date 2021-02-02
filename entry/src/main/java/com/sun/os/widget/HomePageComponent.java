@@ -223,6 +223,49 @@ public class HomePageComponent extends ComponentContainer {
     private void initPartLayout(Component contentLayout) {
         HomePageTitleComponent titleComponent = (HomePageTitleComponent) contentLayout.findComponentById(ResourceTable.Id_titlePart);
         titleComponent.setData("配件体系课", "查看全部＞", null);
+
+        int itemWidth = (DisplayUtils.getDisplayWidthInPx(getContext()) - vp2px(45)) / 2;
+        ArrayList<PartBean> partList = new ArrayList<>();
+        partList.add(new PartBean("酷卡侠 电动编程主机 学习课程", new String[]{"实物编程", "编程思维"}, ResourceTable.Media_img_home_part_1));
+        partList.add(new PartBean("酷卡侠电机家族学习课程", new String[]{"动力机械", "电动工程"}, ResourceTable.Media_img_home_part_2));
+
+        TableLayout partContainer = (TableLayout) contentLayout.findComponentById(ResourceTable.Id_partContainer);
+        for (int i = 0; i < partList.size(); i++) {
+            PartBean partBean = partList.get(i);
+            Component partComponent = LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_layout_home_page_part, partContainer, false);
+
+            Image ivPartCover = (Image) partComponent.findComponentById(ResourceTable.Id_ivPartCover);
+            ivPartCover.setCornerRadius(vp2px(5));
+            ivPartCover.setPixelMap(partBean.cover);
+            ivPartCover.setWidth(itemWidth - vp2px(30));
+            ivPartCover.setHeight((itemWidth - vp2px(30)) * 9 / 16);
+
+            DirectionalLayout labelPartContainer = (DirectionalLayout) partComponent.findComponentById(ResourceTable.Id_labelPartContainer);
+            for (int j = 0; j < partBean.labels.length; j++) {
+                LayoutConfig layoutConfig = new LayoutConfig(LayoutConfig.MATCH_CONTENT, vp2px(20));
+                if (j != 0) {
+                    layoutConfig.setMarginLeft(vp2px(6));
+                }
+
+                Text label = new Text(getContext());
+                label.setText(partBean.labels[j]);
+                label.setLayoutConfig(layoutConfig);
+                label.setTextSize(10, Text.TextSizeType.FP);
+                label.setPadding(vp2px(8), 0, vp2px(8), 0);
+                label.setTextColor(new Color(Color.getIntColor("#FFA200")));
+                label.setBackground(new ShapeElementCreator.Builder().setShape(ShapeElement.RECTANGLE)
+                        .setColor(0xFFFFF4D0).setCornerRadiiArray(0, vp2px(10), vp2px(10), vp2px(10)).build());
+
+                labelPartContainer.addComponent(label);
+            }
+
+            LayoutConfig layoutConfig = new LayoutConfig(itemWidth, LayoutConfig.MATCH_CONTENT);
+            if (i % partContainer.getColumnCount() != 0) {
+                layoutConfig.setMarginLeft(vp2px(15));
+            }
+
+            partContainer.addComponent(partComponent, layoutConfig);
+        }
     }
 
     private void initEducLayout(Component contentLayout) {

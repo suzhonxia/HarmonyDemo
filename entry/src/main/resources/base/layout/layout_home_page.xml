@@ -280,9 +280,12 @@
                     ohos:id="$+id:titlePart"
                     ohos:width="match_parent"/>
 
-                <Image
-                    ohos:height="50vp"
-                    ohos:image_src="$color:black"
+                <TableLayout
+                    ohos:column_count="2"
+                    ohos:height="match_content"
+                    ohos:id="$+id:partContainer"
+                    ohos:left_margin="15vp"
+                    ohos:right_margin="15vp"
                     ohos:width="match_parent"/>
 
                 <com.sun.os.widget.HomePageTitleComponent

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:background_element="$graphic:shape_part_content_bg"
+    ohos:height="match_content"
+    ohos:orientation="vertical"
+    ohos:padding="15vp"
+    ohos:width="match_parent">
+
+    <Image
+        ohos:height="200vp"
+        ohos:id="$+id:ivPartCover"
+        ohos:image_src="$media:img_home_part_1"
+        ohos:scale_mode="clip_center"
+        ohos:width="match_parent"/>
+
+    <Text
+        ohos:height="match_content"
+        ohos:id="$+id:tvPartTitle"
+        ohos:max_text_lines="2"
+        ohos:multiple_lines="true"
+        ohos:text="酷卡侠 电动编程主机 学习课程"
+        ohos:text_color="$color:dark"
+        ohos:text_size="15fp"
+        ohos:text_weight="700"
+        ohos:top_margin="12vp"
+        ohos:truncation_mode="ellipsis_at_end"
+        ohos:width="match_parent"/>
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:id="$+id:labelPartContainer"
+        ohos:orientation="horizontal"
+        ohos:top_margin="12vp"
+        ohos:width="match_parent"/>
+</DirectionalLayout>
