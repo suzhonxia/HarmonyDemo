@@ -8,7 +8,7 @@ public class Logger {
     private static final HiLogLabel label = new HiLogLabel(HiLog.LOG_APP, 0x00200, "Sun");
 
     public static void logI(String format, Object... args) {
-        System.out.println(String.format(format, args));
+        System.out.printf((format) + "%n", args);
 //        HiLog.info(label, format, args);
     }
 

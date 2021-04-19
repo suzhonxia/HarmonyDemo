@@ -132,7 +132,8 @@ public class HomePageComponent extends ComponentContainer {
         int width = DisplayUtils.getDisplayWidthInPx(getContext()) - vp2px(15) * 2;
         Image ivPoster = (Image) contentLayout.findComponentById(ResourceTable.Id_ivPoster);
         ivPoster.setHeight((int) (width * 0.173333));
-        HmOSImageLoader.with(getContext()).load(Constant.posterPath).def(ResourceTable.Media_img_poster).into(ivPoster);
+        ivPoster.setPixelMap(ResourceTable.Media_img_poster);
+//        HmOSImageLoader.with(getContext()).load(Constant.posterPath).def(ResourceTable.Media_img_poster).into(ivPoster);
     }
 
     private void initPremiumLayout(Component contentLayout) {

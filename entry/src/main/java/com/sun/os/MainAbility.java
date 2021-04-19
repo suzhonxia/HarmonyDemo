@@ -10,7 +10,7 @@ public class MainAbility extends Ability {
         super.onStart(intent);
         super.setMainRoute(MainAbilitySlice.class.getName());
 
-        checkSelfPermission();
+//        checkSelfPermission();
     }
 
     private void checkSelfPermission() {
